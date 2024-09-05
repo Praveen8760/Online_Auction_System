@@ -1,0 +1,5 @@
+.scroll{
+    scrollbar-width: 2px;
+    scroll-behavior: smooth;
+    scrollbar-color: black;
+}

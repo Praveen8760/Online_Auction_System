@@ -1,0 +1,9 @@
+@tailwind base;
+@tailwind utilities;
+@tailwind variants;
+
+
+@font-face {
+    font-family: "Custom";
+    src: url("../text/custom_font.ttf");
+}
