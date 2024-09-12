@@ -14,8 +14,15 @@ module.exports = {
 
         'dark-grey':"DBDBDB",
         'table-dark':"#222222",
+
+        // alert color
+        'success-green':"#D9F7E7",
+        "waiting-yellow":"#FFF0BB",
+        "danger-red":"#FEB7B4",
+        "success-green-dark":"#4AD991",
         
         // light color
+  
         'primary-light':"#FE8983",
         'asset-1-light':"#BDD0FB",
         'dark-light':"#636364"

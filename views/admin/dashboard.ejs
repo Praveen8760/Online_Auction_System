@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Dashboard</title>
     <link rel="stylesheet" href="/css/main.css">
     <link rel="stylesheet" href="/css/output.css">
 
@@ -74,7 +74,7 @@
                     <div class="flex flex-col">
                         <h1 class="text-dark-light text-mobile-p font-Custom g:text-destop-h3">Active Auction</h1>
                         <h3 class="text-dark text-mobile-h3 font-Custom lg:text-destop-h2">
-                            <%- dashboard_data.active_auction %>
+                            <%- dashboard_data.activeAuction %>
                         </h3>
                     </div>
                     <img src="/image/auction_icon.svg" alt="user" class="self-start w-[40px] h-[40px] lg:w-[60px] lg:h-[60px]">
@@ -123,14 +123,20 @@
                           </th>
                         </tr>
                       </thead>
-                      <tbody class="text-center text-mobile-p lg:text-destop-p font-Custom text-table-dark">
-                        <tr class="h-14">
-                          <td class="px-4 py-2 border-r border-dark-grey">Auction 1</td>
-                          <td class="px-4 py-2 border-r border-dark-grey">2024-09-01 14:00</td>
-                          <td class="px-4 py-2 border-r border-dark-grey">2024-09-01 18:00</td>
-                          <td class="px-4 py-2 border-dark-grey">Active</td>
-                        </tr>
-                      </tbody>
+                      <tbody class="text-center text-mobile-p lg:text-destop-p font-Custom">
+                            <% for( let i = 0; i < tableData.length; i++ ) { %>
+                                <tr class="h-14">
+                                     <td class="px-4 py-2 border-r border-dark-grey"><%= tableData[i].title %></td>
+                                     <td class="px-4 py-2 border-r border-dark-grey"><%=  %></td>
+                                     <td class="px-4 py-2 border-r border-dark-grey"><%= tableData[i].starting_bid %></td>
+                                    <% if (tableData[i].status == "active") { %>
+                                        <td class="px-4 py-2 border-dark-grey flex justify-center">
+                                            <p class="bg-success-green rounded-desktop-form py-1 px-5 max-w-fit text-success-green-dark font-bold">Active</p>
+                                        </td>
+                                    <% } %>
+                                 </tr>
+                            <% } %>
+                        </tbody>
                     </table>
                   </div>
             </section>

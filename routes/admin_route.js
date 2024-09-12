@@ -59,15 +59,16 @@ route.get('/dashboard',async(request,response)=>{
         return response.redirect('login')
     }
     else{
-        console.log(request.session);
-        const user_count=await UserModel.countDocuments({})
         const data={
-            userCount:user_count,
-            active_auction:0,
-            total_revenve:0,
-            pending_request:0,
-        };
-        return response.render('admin/dashboard',{dashboard_data:data})
+            userCount:(await UserModel.find({})).length,
+            activeAuction:(await AuctionModel.find({status:'active'})).length
+        }
+        const table_val=(await AuctionModel.find({})).sort();
+        console.log(table_val);
+        console.log(new Date(table_val[0].start_time));
+        
+        
+        return response.render('admin/dashboard',{dashboard_data:data,tableData:table_val})
     }
 })
 
@@ -131,7 +132,7 @@ route.post('/product',upload.array('image',5),async(request,response)=>{
     catch (error) {
         console.error(error);
         response.status(500).send('Error creating auction');
-    }
+    }   
 });
 
 
