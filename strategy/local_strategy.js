@@ -5,7 +5,6 @@ const compare_password = require('../src/javascript/compare_password');
 
 passport.serializeUser((user,done)=>{
     console.log("serial");
-    
     done(null,user.email);
 })
 

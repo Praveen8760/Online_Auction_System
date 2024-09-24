@@ -2,6 +2,8 @@ const express = require('express');
 
 const mongoose =require('mongoose');
 const passport=require('passport');
+const http = require('http');
+const socketIo = require('socket.io');
 const local=require('./strategy/local_strategy');
 
 const GoogleStrategy=require('./strategy/google_auth')
@@ -28,6 +30,10 @@ const google_auth=require('./routes/google_auth_route');
 
 const app=express();
 const PORT=process.env.PORT || 3000;
+
+const server=http.createServer(app)
+const io=socketIo(server)
+
 
 // Database connection
 const DB=mongoose.connect("mongodb://localhost:27017/auction_App")
@@ -93,12 +99,15 @@ app.use('/admin',admin);
 // app.use('/google',google_auth);
 
 
+require('./src/javascript/socket')(io);
+
+
 app.get('/',(request,response)=>{
-    return response.render('dashboard')
+    return response.render('home')
 })
 
 
-app.listen(PORT,(err)=>{
+server.listen(PORT,(err)=>{
     if(err){
         console.log("server Error");
     }

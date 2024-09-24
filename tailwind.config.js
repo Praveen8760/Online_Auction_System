@@ -18,8 +18,9 @@ module.exports = {
         // alert color
         'success-green':"#D9F7E7",
         "waiting-yellow":"#FFF0BB",
-        "danger-red":"#FEB7B4",
+        "danger-red":"#FEE6E5",
         "success-green-dark":"#4AD991",
+        "danger-red-dark":"#FE8983",
         
         // light color
   

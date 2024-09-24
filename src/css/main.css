@@ -3,3 +3,11 @@
     scroll-behavior: smooth;
     scrollbar-color: black;
 }
+
+#card-img:hover{
+    /* position: absolute;
+    width: 100%;
+    bottom: 0; */
+    box-shadow: 0px 0px 100px 100px rgba(0, 20, 245, 0.586);
+  }
+  

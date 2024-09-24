@@ -6,8 +6,7 @@
     <title>Dashboard</title>
     <link rel="stylesheet" href="/css/main.css">
     <link rel="stylesheet" href="/css/output.css">
-
-    <link rel="icon" href="image/brand_icon.svg">
+    <link rel="icon" href="/image/brand_icon.svg">
 
     <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
 </head>
@@ -127,11 +126,16 @@
                             <% for( let i = 0; i < tableData.length; i++ ) { %>
                                 <tr class="h-14">
                                      <td class="px-4 py-2 border-r border-dark-grey"><%= tableData[i].title %></td>
-                                     <td class="px-4 py-2 border-r border-dark-grey"><%=  %></td>
-                                     <td class="px-4 py-2 border-r border-dark-grey"><%= tableData[i].starting_bid %></td>
+                                     <td class="px-4 py-2 border-r border-dark-grey"><%= tableData[i].start_time %></td>
+                                     <td class="px-4 py-2 border-r border-dark-grey">₹<%= tableData[i].starting_bid %></td>
                                     <% if (tableData[i].status == "active") { %>
                                         <td class="px-4 py-2 border-dark-grey flex justify-center">
                                             <p class="bg-success-green rounded-desktop-form py-1 px-5 max-w-fit text-success-green-dark font-bold">Active</p>
+                                        </td>
+                                    <% } %>
+                                    <% if (tableData[i].status == "completed") { %>
+                                        <td class="px-4 py-2 border-dark-grey flex justify-center">
+                                            <p class="bg-danger-red rounded-desktop-form py-1 px-5 max-w-fit text-danger-red-dark font-bold">Completed</p>
                                         </td>
                                     <% } %>
                                  </tr>

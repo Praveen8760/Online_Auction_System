@@ -1,7 +1,7 @@
 
 const mongoose=require('mongoose');
 
-const bidSchema = new Schema({
+const bidSchema = new mongoose.Schema({
     auction_id: { 
         type: mongoose.Schema.Types.ObjectId, 
         ref: 'Auction', 

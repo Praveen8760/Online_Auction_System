@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Page</title>
+    <link rel="icon" href="/image/brand_icon.svg">
+    <link rel="stylesheet" href="/css/output.css">
+    <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
+    <script src="https://unpkg.com/flowbite@1.6.5/dist/flowbite.min.js"></script>
+    <!-- <link rel="stylesheet" href="/src/css/main.css"> -->
+
+    <style>
+        #shadow {
+            box-shadow: inset 0 4px 6px rgba(0, 0, 0, 0.5);
+        }
+    </style>
+
+</head>
+
+<body class="bg-white-base">
+
+    <!-- navbar -->
+    <nav class="bg-white">
+        <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+        <a href="https://flowbite.com/" class="flex items-center space-x-9 rtl:space-x-reverse">
+            <img src="image/brand_icon.svg" class="h-14 w-14 lg:w-[40px] lg:h-[40px]" alt="Flowbite Logo" />
+            <span class="self-center text-2xl font-semibold whitespace-nowrap font-Custom">Bidding</span>
+        </a>
+        <div class="flex items-center md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
+            <button type="button" class="flex text-sm rounded-full md:me-0 focus:ring-4" id="user-menu-button" aria-expanded="false" data-dropdown-toggle="user-dropdown" data-dropdown-placement="bottom">
+            <img class="w-8 h-8 rounded-full" src="image/user.svg" alt="user photo">
+            </button>
+            <!-- Dropdown menu -->
+            <div class="z-50 hidden my-4 text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700 dark:divide-gray-600" id="user-dropdown">
+            <div class="px-4 py-3">
+                <span class="block text-sm text-gray-900 dark:text-white">Bonnie Green</span>
+                <span class="block text-sm  text-gray-500 truncate dark:text-gray-400">name@flowbite.com</span>
+            </div>
+            <ul class="py-2" aria-labelledby="user-menu-button">
+                <li>
+                <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Dashboard</a>
+                </li>
+                <li>
+                <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Settings</a>
+                </li>
+                <li>
+                <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Earnings</a>
+                </li>
+                <li>
+                <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Sign out</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- grid -->
+    <main class="h-dvh w-auto mx-6 mt-24 lg:mx-24 flex justify-center">
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+            <div class="grid gap-2">
+                <div>
+                    <img class="h-auto max-w-full rounded-lg" src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image.jpg" alt="">
+                </div>
+                <div>
+                    <img class="h-auto max-w-full rounded-lg" src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-1.jpg" alt="">
+                </div>
+            </div>
+            <div class="grid gap-2">
+                <div>
+                    <img class="h-auto max-w-full rounded-lg" src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-3.jpg" alt="">
+                </div>
+                <div>
+                    <img class="h-auto max-w-full rounded-lg" src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-4.jpg" alt="">
+                </div>
+            </div>
+            <div class="grid gap-2">
+                <div class="relative">
+                    <img class="h-auto w-full object-cover rounded-lg" src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-6.jpg" alt="">
+                </div>
+                <div class="relative">
+                    <img class="h-auto w-full object-cover rounded-lg" src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-7.jpg" alt="">
+                </div>
+            </div>
+            
+            <div class="grid gap-2">
+
+                <div class="relative group">
+                    <img class="h-auto w-full object-cover rounded-lg" src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-9.jpg" alt="">
+                    <!-- Text and Button (hidden initially) -->
+                    <div class="absolute bottom-0 left-0 right-0 text-white rounded-lg bg-table-dark opacity-0 group-hover:opacity-100 transition-opacity duration-300 p-4 flex justify-between items-center">
+                        <span class="text-lg">Image Description</span>
+                        <a href="#" class="bg-blue-700 hover:bg-blue-800 text-white font-medium py-2 px-4 rounded-lg text-sm">View More</a>
+                    </div>
+                </div>
+            
+                
+                <div class="relative group">
+                    <img class="h-auto w-full object-cover rounded-lg" src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-4.jpg" alt="">
+                    <!-- Text and Button (hidden initially) -->
+                    <div class="absolute bottom-0 left-0 right-0 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300 p-4 flex justify-between items-center">
+                        <span class="text-lg">Image Description</span>
+                        <a href="#" class="bg-blue-700 hover:bg-blue-800 text-white font-medium py-2 px-4 rounded-lg text-sm">View More</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    
+    
+    <main class="mx-6 lg:mx-24 mt-20">
+        <div class="font-Custom text-dark leading-tight">
+            <h1 class="text-mobile-h3 font-semibold lg:text-destop-h1">Latest Auction</h1>
+        </div>
+
+        <div class="grid gap-6 lg:grid-cols-3 grid-cols-1 mt-5 font-Custom text-dark">
+            <% auctions.forEach(auction => { %>
+             
+                <div class="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow">
+                    <a href="#">
+                        <img class="p-8 rounded-t-lg" src="<%= auction.images[0] %>" alt="product image" />
+                    </a>
+                    <div class="px-5 pb-5">
+                        <a href="#">
+                            <h5 class="text-mobile-p font-semibold tracking-tight lg:text-destop-p"><%= auction.title %></h5>
+                        </a>
+                        <div class="flex items-center mt-2.5 mb-5">
+                            <div class="flex items-center space-x-1 rtl:space-x-reverse">
+                                <svg class="w-4 h-4 text-yellow-300" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
+                                    <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
+                                </svg>
+                                <svg class="w-4 h-4 text-yellow-300" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
+                                    <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
+                                </svg>
+                                <svg class="w-4 h-4 text-yellow-300" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
+                                    <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
+                                </svg>
+                                <svg class="w-4 h-4 text-yellow-300" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
+                                    <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
+                                </svg>
+                                <svg class="w-4 h-4 text-gray-200 " aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
+                                    <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
+                                </svg>
+                            </div>
+                            <span class="bg-blue-100 text-blue-800 text-xs font-semibold px-2.5 py-0.5 rounded ms-3">5.0</span>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <span class="text-mobile-h3 font-bold text-gray-900 lg:text-destop-h3"><%= auction.starting_bid %></span>
+                            <p>Current Bid: $<span id="current-bid-<%= auction._id %>"><%= auction.current_bid %></span></p>
+                            <button onclick="placeBid('<%= auction._id %>', '<%= auction.bid_increment %>' , '<%= userId %>')">Place Bid</button>
+                        </div>
+                    </div>
+                </div>
+            <% }) %> 
+        </div>
+
+    </main>
+
+    <script src="/socket.io/socket.io.js"></script>
+
+    <script>
+        const socket = io();
+    
+        function placeBid(auctionId, bidIncrement, userId) {
+            // Log the user ID and bid increment to verify they're passed correctly
+            console.log("User ID:", userId);
+            console.log("Bid Increment:", bidIncrement);
+    
+            // Get the current bid amount from the HTML
+            const currentBidElement = document.getElementById(`current-bid-${auctionId}`);
+            const currentBid = parseFloat(currentBidElement.textContent);
+    
+            // Increment the current bid by the value from the database
+            const newBidAmount = currentBid + parseFloat(bidIncrement);
+    
+            // Emit the new bid using Socket.IO
+            socket.emit('placeBid', { auctionId, userId, bidAmount: newBidAmount });
+        }
+    
+        // Listen for bid updates from the server
+        socket.on('bidUpdated', ({ auctionId, bidAmount }) => {
+            const currentBidElement = document.getElementById(`current-bid-${auctionId}`);
+            currentBidElement.innerText = bidAmount;
+        });
+    
+        // Listen for errors from the server
+        socket.on('error', (message) => {
+            alert(message);
+        });
+    </script>
+    
+      
+</body>
+</html>
