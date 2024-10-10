@@ -10,6 +10,8 @@ const GoogleStrategy=require('./strategy/google_auth')
 
 const MongoStore=require('connect-mongo');
 
+const User=require('./schema/user_schema')
+
 
 
 const bodypareser=require('body-parser');
@@ -35,7 +37,9 @@ const server=http.createServer(app)
 const io=socketIo(server)
 
 
+
 // Database connection
+
 const DB=mongoose.connect("mongodb://localhost:27017/auction_App")
 .then(()=>{
     console.log("DB Conneted");
@@ -43,6 +47,38 @@ const DB=mongoose.connect("mongodb://localhost:27017/auction_App")
 .catch((err)=>{
     console.log("Database Error");
 })
+
+
+
+// const uri="mongodb+srv://praveen8760:praveen890340@auctionsystemdatabase.zyyid.mongodb.net/?retryWrites=true&w=majority&appName=AuctionSystemDatabase"
+// const DB=mongoose.connect(uri)
+// .then(()=>{
+//     console.log("DB");
+//     mongoose.connection.db.admin().ping();
+// })
+// .then(async() => {
+//     console.log("Pinged the database, connection is active");
+//     const newUser=await User.create({
+//         fullname:'testUser',
+//         password:"testUser",
+//         email:"hello2@gmail.com"
+//     });
+//     newUser.save()
+//     console.log("done");
+    
+// })
+// .catch((err)=>{
+//     console.log(err);
+    
+// })
+
+
+
+    
+
+
+
+
 
 // template engine
 app.set('view engine','ejs');
@@ -72,6 +108,7 @@ app.use(session({
         maxAge: 1000 * 60 * 60 * 24, // 1-day
     },
     store:MongoStore.create({
+        // mongoUrl:uri,
         client:mongoose.connection.getClient(),
     })
 }))
@@ -113,6 +150,7 @@ server.listen(PORT,(err)=>{
     }
     else{
         console.log(`Server running in PORT: ${PORT}`);
+       
     }
 })
 

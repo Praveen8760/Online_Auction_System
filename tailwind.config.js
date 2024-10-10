@@ -25,8 +25,9 @@ module.exports = {
         // light color
   
         'primary-light':"#FE8983",
-        'asset-1-light':"#BDD0FB",
-        'dark-light':"#636364"
+        'asset-1-light':"#EEF2FF",
+        'dark-light':"#636364",
+        'border-color':"#E2E8F0",
       },
       fontFamily:{
         "Custom":["Custom"]

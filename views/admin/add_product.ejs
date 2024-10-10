@@ -14,7 +14,7 @@
 
 <body class="bg-white-base">
     <main class="grid grid-cols-12 h-dvh">
-        <aside class="col-span-full lg:h-dvh lg:col-span-2">
+        <aside class="col-span-3 lg:h-screen lg:col-span-2">
             <div @click.away="open = false" class="flex min-w-max h-auto lg:h-dvh flex-col text-gray-700 lg:rounded-r-[40px] bg-white flex-shrink-0" x-data="{ open: false }">
                 <div class="flex-shrink-0 px-8 py-4 flex flex-row items-center justify-between">
                     <div class="flex justify-center gap-2 items-center">
@@ -28,30 +28,59 @@
                     </svg>
                 </button>
                 </div>
-                <nav :class="{'block': open, 'hidden': !open}" class="flex-grow md:block px-4 pb-4 md:pb-0 md:overflow-y-auto">
-                <a class="text-mobile-p text-dark font-Custom block px-4 py-2 mt-2 rounded-desktop-form hover:text-gray-900 focus:text-gray-900 hover:bg-asset-1-light focus:bg-asset-1-light focus:outline-none focus:shadow-outline lg:text-destop-p" href="/admin/dashboard">Dashboard</a>
-                <a class="text-mobile-p text-dark font-Custom block px-4 py-2 mt-2 rounded-desktop-form hover:text-gray-900 focus:text-gray-900 hover:bg-asset-1-light focus:bg-asset-1-light focus:outline-none focus:shadow-outline lg:text-destop-p" href="#">Products</a>
-                <a class="text-mobile-p text-dark font-Custom block px-4 py-2 mt-2 rounded-desktop-form hover:text-gray-900 focus:text-gray-900 hover:bg-asset-1-light focus:bg-asset-1-light focus:outline-none focus:shadow-outline lg:text-destop-p" href="/admin/product">Add Product</a>
-                <a class="text-mobile-p text-dark font-Custom block px-4 py-2 mt-2 rounded-desktop-form hover:text-gray-900 focus:text-gray-900 hover:bg-asset-1-light focus:bg-asset-1-light focus:outline-none focus:shadow-outline lg:text-destop-p" href="#">Product Request</a>
-                <div @click.away="open = false" class="relative" x-data="{ open: false }">
-                    <button @click="open = !open" class="flex flex-row items-center w-full px-4 py-2 mt-2 text-sm font-semibold text-left bg-transparent rounded-lg md:block hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline">
-                    <span>Dropdown</span>
-                    <svg fill="currentColor" viewBox="0 0 20 20" :class="{'rotate-180': open, 'rotate-0': !open}" class="inline w-4 h-4 mt-1 ml-1 transition-transform duration-200 transform md:-mt-1"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+                <nav :class="{'block': open, 'hidden': !open}" class="flex-grow md:block border-primary px-4 pb-4 md:pb-0 md:overflow-y-auto">
+                <a class="flex items-center gap-4 text-mobile-p text-dark font-Custom px-4 py-2 mt-2 rounded-desktop-form hover:text-gray-900 focus:text-gray-900 hover:bg-asset-1-light focus:bg-asset-1-light lg:text-destop-p" href="/admin/dashboard">
+                    <svg class="full-current" width="20" height="21" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M14.1666 12.1668V17.1668M11.6666 14.6668H16.6666M4.99992 8.8335H6.66659C7.58706 8.8335 8.33325 8.0873 8.33325 7.16683V5.50016C8.33325 4.57969 7.58706 3.8335 6.66659 3.8335H4.99992C4.07944 3.8335 3.33325 4.57969 3.33325 5.50016V7.16683C3.33325 8.0873 4.07944 8.8335 4.99992 8.8335ZM13.3333 8.8335H14.9999C15.9204 8.8335 16.6666 8.0873 16.6666 7.16683V5.50016C16.6666 4.57969 15.9204 3.8335 14.9999 3.8335H13.3333C12.4128 3.8335 11.6666 4.57969 11.6666 5.50016V7.16683C11.6666 8.0873 12.4128 8.8335 13.3333 8.8335ZM4.99992 17.1668H6.66659C7.58706 17.1668 8.33325 16.4206 8.33325 15.5002V13.8335C8.33325 12.913 7.58706 12.1668 6.66659 12.1668H4.99992C4.07944 12.1668 3.33325 12.913 3.33325 13.8335V15.5002C3.33325 16.4206 4.07944 17.1668 4.99992 17.1668Z" stroke="#343EE5" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <p>Dashboard</p>
+                </a>
+
+                <a class="flex items-center gap-4 text-mobile-p text-dark font-Custom px-4 py-2 mt-2 rounded-desktop-form hover:text-gray-900 focus:text-gray-900 hover:bg-asset-1-light focus:bg-asset-1-light lg:text-destop-p" href="#">
+                    <svg class="full-current" width="20" height="21" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M14.1666 12.1668V17.1668M11.6666 14.6668H16.6666M4.99992 8.8335H6.66659C7.58706 8.8335 8.33325 8.0873 8.33325 7.16683V5.50016C8.33325 4.57969 7.58706 3.8335 6.66659 3.8335H4.99992C4.07944 3.8335 3.33325 4.57969 3.33325 5.50016V7.16683C3.33325 8.0873 4.07944 8.8335 4.99992 8.8335ZM13.3333 8.8335H14.9999C15.9204 8.8335 16.6666 8.0873 16.6666 7.16683V5.50016C16.6666 4.57969 15.9204 3.8335 14.9999 3.8335H13.3333C12.4128 3.8335 11.6666 4.57969 11.6666 5.50016V7.16683C11.6666 8.0873 12.4128 8.8335 13.3333 8.8335ZM4.99992 17.1668H6.66659C7.58706 17.1668 8.33325 16.4206 8.33325 15.5002V13.8335C8.33325 12.913 7.58706 12.1668 6.66659 12.1668H4.99992C4.07944 12.1668 3.33325 12.913 3.33325 13.8335V15.5002C3.33325 16.4206 4.07944 17.1668 4.99992 17.1668Z" stroke="#343EE5" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <p >Products</p>
+                </a>
+
+                <a class="flex items-center gap-4 text-mobile-p text-dark font-Custom px-4 py-2 mt-2 rounded-desktop-form hover:text-gray-900 focus:text-gray-900 hover:bg-asset-1-light focus:bg-asset-1-light lg:text-destop-p" href="/admin/product">
+                    <svg width="20" height="21" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M14.1666 12.1668V17.1668M11.6666 14.6668H16.6666M4.99992 8.8335H6.66659C7.58706 8.8335 8.33325 8.0873 8.33325 7.16683V5.50016C8.33325 4.57969 7.58706 3.8335 6.66659 3.8335H4.99992C4.07944 3.8335 3.33325 4.57969 3.33325 5.50016V7.16683C3.33325 8.0873 4.07944 8.8335 4.99992 8.8335ZM13.3333 8.8335H14.9999C15.9204 8.8335 16.6666 8.0873 16.6666 7.16683V5.50016C16.6666 4.57969 15.9204 3.8335 14.9999 3.8335H13.3333C12.4128 3.8335 11.6666 4.57969 11.6666 5.50016V7.16683C11.6666 8.0873 12.4128 8.8335 13.3333 8.8335ZM4.99992 17.1668H6.66659C7.58706 17.1668 8.33325 16.4206 8.33325 15.5002V13.8335C8.33325 12.913 7.58706 12.1668 6.66659 12.1668H4.99992C4.07944 12.1668 3.33325 12.913 3.33325 13.8335V15.5002C3.33325 16.4206 4.07944 17.1668 4.99992 17.1668Z" stroke="#343EE5" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <p class="text-primary">Add Products</p>
+                </a>
+
+                <a class="flex items-center gap-4 text-mobile-p text-dark font-Custom px-4 py-2 mt-2 rounded-desktop-form hover:text-gray-900 focus:text-gray-900 hover:bg-asset-1-light focus:bg-asset-1-light lg:text-destop-p" href="#">
+                    <svg class="full-current" width="20" height="21" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M14.1666 12.1668V17.1668M11.6666 14.6668H16.6666M4.99992 8.8335H6.66659C7.58706 8.8335 8.33325 8.0873 8.33325 7.16683V5.50016C8.33325 4.57969 7.58706 3.8335 6.66659 3.8335H4.99992C4.07944 3.8335 3.33325 4.57969 3.33325 5.50016V7.16683C3.33325 8.0873 4.07944 8.8335 4.99992 8.8335ZM13.3333 8.8335H14.9999C15.9204 8.8335 16.6666 8.0873 16.6666 7.16683V5.50016C16.6666 4.57969 15.9204 3.8335 14.9999 3.8335H13.3333C12.4128 3.8335 11.6666 4.57969 11.6666 5.50016V7.16683C11.6666 8.0873 12.4128 8.8335 13.3333 8.8335ZM4.99992 17.1668H6.66659C7.58706 17.1668 8.33325 16.4206 8.33325 15.5002V13.8335C8.33325 12.913 7.58706 12.1668 6.66659 12.1668H4.99992C4.07944 12.1668 3.33325 12.913 3.33325 13.8335V15.5002C3.33325 16.4206 4.07944 17.1668 4.99992 17.1668Z" stroke="#343EE5" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <p>Products Request</p>
+                </a>
+
+                <a class="flex items-center gap-4 text-mobile-p text-dark font-Custom px-4 py-2 mt-2 rounded-desktop-form hover:text-gray-900 focus:text-gray-900 hover:bg-asset-1-light focus:bg-asset-1-light lg:text-destop-p" href="#">
+                    <svg class="full-current" width="20" height="21" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M14.1666 12.1668V17.1668M11.6666 14.6668H16.6666M4.99992 8.8335H6.66659C7.58706 8.8335 8.33325 8.0873 8.33325 7.16683V5.50016C8.33325 4.57969 7.58706 3.8335 6.66659 3.8335H4.99992C4.07944 3.8335 3.33325 4.57969 3.33325 5.50016V7.16683C3.33325 8.0873 4.07944 8.8335 4.99992 8.8335ZM13.3333 8.8335H14.9999C15.9204 8.8335 16.6666 8.0873 16.6666 7.16683V5.50016C16.6666 4.57969 15.9204 3.8335 14.9999 3.8335H13.3333C12.4128 3.8335 11.6666 4.57969 11.6666 5.50016V7.16683C11.6666 8.0873 12.4128 8.8335 13.3333 8.8335ZM4.99992 17.1668H6.66659C7.58706 17.1668 8.33325 16.4206 8.33325 15.5002V13.8335C8.33325 12.913 7.58706 12.1668 6.66659 12.1668H4.99992C4.07944 12.1668 3.33325 12.913 3.33325 13.8335V15.5002C3.33325 16.4206 4.07944 17.1668 4.99992 17.1668Z" stroke="#343EE5" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <p>Reports</p>
+                </a>
+                <hr class="border-t-2 rounded-lg border-border-color my-4">
+                <!-- logout -->
+                <form method="post" action="/admin/logout" class="w-full h-auto flex justify-center">
+                    <button type="submit" class="w-full py-[10px] rounded-desktop-form bg-primary flex place-content-center gap-[20px]">
+                        <svg viewBox="0 0 72 72" xmlns="http://www.w3.org/2000/svg" class="text-white fill-current w-6 h-6">
+                            <path d="M8 8H32C34.2 8 36 6.2 36 4C36 1.8 34.2 0 32 0H8C3.6 0 0 3.6 0 8V64C0 68.4 3.6 72 8 72H32C34.2 72 36 70.2 36 68C36 65.8 34.2 64 32 64H8V8Z" fill="#FFFFFF"/>
+                            <path d="M70.6 34.6L59.44 23.44C58.16 22.16 56 23.04 56 24.84V32H28C25.8 32 24 33.8 24 36C24 38.2 25.8 40 28 40H56V47.16C56 48.96 58.16 49.84 59.4 48.56L70.56 37.4C71.36 36.64 71.36 35.36 70.6 34.6Z" fill="#FFFFFF"/>
+                        </svg>
+                        <span class="font-Custom text-white text-mobile-p lg:text-destop-p">Logout</span>
                     </button>
-                    <div x-show="open" x-transition:enter="transition ease-out duration-100" x-transition:enter-start="transform opacity-0 scale-95" x-transition:enter-end="transform opacity-100 scale-100" x-transition:leave="transition ease-in duration-75" x-transition:leave-start="transform opacity-100 scale-100" x-transition:leave-end="transform opacity-0 scale-95" class="absolute right-0 w-full mt-2 origin-top-right rounded-md shadow-lg">
-                    <div class="px-2 py-2 bg-white rounded-md shadow">
-                        <a class="block px-4 py-2 mt-2 text-sm font-semibold bg-transparent rounded-lg md:mt-0 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline" href="#">Link #1</a>
-                        <a class="block px-4 py-2 mt-2 text-sm font-semibold bg-transparent rounded-lg md:mt-0 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline" href="#">Link #2</a>
-                        <a class="block px-4 py-2 mt-2 text-sm font-semibold bg-transparent rounded-lg md:mt-0 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline" href="#">Link #3</a>
-                    </div>
-                    </div>
-                </div>
+                </form>
                 </nav>
             </div>
+
         </aside>
         
 
-        <section class="col-span-full lg:col-span-10 px-4 lg:px-8 overflow-y-auto scroll">
+        <section class="lg:mx-3 col-span-full lg:col-span-10 px-4 lg:px-8 overflow-y-auto scroll">
             <!-- title -->
              <div>
                 <h1 class="font-Custom text-mobile-h1 lg:text-destop-h1">Create Auction</h1>

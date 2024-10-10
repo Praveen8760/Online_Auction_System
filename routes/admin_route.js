@@ -3,6 +3,8 @@ const route=express.Router();
 const compare_password=require('../src/javascript/compare_password')
 const passport=require('passport')
 
+const isLoggedIn=require("./main_route")
+
 const bcrypt=require('bcrypt')
 const mongoose=require('mongoose')
 const { upload } = require('../src/javascript/image_cloud');
@@ -38,6 +40,7 @@ route.post('/login',async(request,response)=>{
         }
 
         // Save user ID in session
+        request.session.name=user.fullname;
         request.session.userId = user._id;
         request.session.email=user.email;
         request.session.role = user.role;
@@ -54,6 +57,16 @@ route.post('/login',async(request,response)=>{
 });
 
 
+route.post('/logout',(request,response)=>{
+    request.logout(err => {
+        if (err) {
+            return response.status(500).json({ message: 'Logout failed' });
+        }
+        return response.redirect('login')
+    });
+})
+
+
 route.get('/dashboard',async(request,response)=>{
     if(request.session.role != "admin"){
         return response.redirect('login')
@@ -63,12 +76,16 @@ route.get('/dashboard',async(request,response)=>{
             userCount:(await UserModel.find({})).length,
             activeAuction:(await AuctionModel.find({status:'active'})).length
         }
-        const table_val=(await AuctionModel.find({})).sort();
-        console.log(table_val);
-        console.log(new Date(table_val[0].start_time));
+        const table_val=(await AuctionModel.find({}).sort({status:1}).lean());
         
+        table_val.forEach(element => {
+            let startDate=new Date(element.start_time);
+            const formattedStartDate = `${startDate.getFullYear()}-${(startDate.getMonth() + 1).toString().padStart(2, '0')}-${startDate.getDate().toString().padStart(2, '0')}`;
+            element.start_time=formattedStartDate
+        });    
+        console.log(request.session);
         
-        return response.render('admin/dashboard',{dashboard_data:data,tableData:table_val})
+        return response.render('admin/dashboard',{dashboard_data:data,tableData:table_val,admin_info:request.session})
     }
 })
 
