@@ -17,7 +17,8 @@ const auctionSchema = new Schema({
     bids: [{ type: Schema.Types.ObjectId, ref: 'Bid' }],
     winner_id: { type: Schema.Types.ObjectId, ref: 'User' },
     created_at: { type: Date, default: Date.now },
-    updated_at: { type: Date, default: Date.now }
+    updated_at: { type: Date, default: Date.now },
+    waiting_list:[{type:mongoose.Types.ObjectId,ref:'User'}]
 });
 
 const AuctionModel = mongoose.model('Auction', auctionSchema);
