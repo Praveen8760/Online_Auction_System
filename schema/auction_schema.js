@@ -11,7 +11,7 @@ const auctionSchema = new Schema({
     bid_increment: { type: Number, default: 1 },
     start_time: { type: Date, required: true },
     end_time: { type: Date, required: true },
-    status: { type: String, enum: ['active', 'completed', 'canceled'], default: 'active' },
+    status: { type: String, enum: ['pending', 'active', 'completed', 'cancelled'], default: 'active'},
     seller_id: { type: Schema.Types.ObjectId, ref: 'User', required: true },
     category: { type: Schema.Types.ObjectId, ref: 'Category', required: true },
     bids: [{ type: Schema.Types.ObjectId, ref: 'Bid' }],

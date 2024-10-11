@@ -74,7 +74,8 @@ route.get('/dashboard',async(request,response)=>{
     else{
         const data={
             userCount:(await UserModel.find({})).length,
-            activeAuction:(await AuctionModel.find({status:'active'})).length
+            activeAuction:(await AuctionModel.find({status:'active'})).length,
+            pendingRequest:(await AuctionModel.find({status:'pending'})).length
         }
         const table_val=(await AuctionModel.find({}).sort({status:1}).lean());
         
@@ -154,8 +155,52 @@ route.post('/product',upload.array('image',5),async(request,response)=>{
 
 
 
+route.get('/productRequest',async(request,response)=>{
+    const pendingProducts = await AuctionModel.find({ status: 'pending' });
+    response.render('admin/productRequest', { pendingProducts });
+})
+
+route.post('/productRequest/accept/:productId', async (request, response) => {
+    try {
+        const auctionId = request.params.productId;
+        // Find the auction by ID and update its approval status
+        const auction = await AuctionModel.findByIdAndUpdate(auctionId, { status:'active' }, { new: true });
+
+        if (!auction) {
+            return response.redirect('/admin/productRequest');
+        }
+
+        response.redirect('/admin/productRequest');
+    } catch (error) {
+        console.error(error);
+        response.redirect('/admin/productRequest');
+    }
+});
+
+route.post('/productRequest/reject/:productId', async (request, response) => {
+    try {
+        const auctionId = request.params.productId;
+        // Find the auction by ID and update its approval status
+        const auction = await AuctionModel.findByIdAndUpdate(auctionId, { status:'cancelled' }, { new: true });
+
+        if (!auction) {
+            return response.redirect('/admin/productRequest');
+        }
+
+        response.redirect('/admin/productRequest');
+    } catch (error) {
+        console.error(error);
+        response.redirect('/admin/productRequest');
+    }
+});
+
+
+
+
+
+
 route.get('/test',(req,res)=>{
-    return res.render('fol/test')
+    return res.send('test')
 })
 
 

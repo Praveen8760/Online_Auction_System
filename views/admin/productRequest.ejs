@@ -3,18 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Add Product</title>
+    <title>Product Request</title>
     <link rel="stylesheet" href="/css/main.css">
     <link rel="stylesheet" href="/css/output.css">
-    
     <link rel="icon" href="/image/brand_icon.svg">
 
     <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
-</head>
 
+
+</head>
 <body class="bg-white-base">
-    <main class="grid grid-cols-12 h-dvh">
-        <aside class="col-span-3 lg:h-screen lg:col-span-2">
+    <main class="grid grid-cols-12 h-screen z-50 overflow-y-auto">
+        <!-- side Bar -->
+        <aside class="col-span-full lg:h-screen lg:col-span-2">
             <div @click.away="open = false" class="flex min-w-max h-auto lg:h-dvh flex-col text-gray-700 lg:rounded-r-[40px] bg-white flex-shrink-0" x-data="{ open: false }">
                 <div class="flex-shrink-0 px-8 py-4 flex flex-row items-center justify-between">
                     <div class="flex justify-center gap-2 items-center">
@@ -29,28 +30,27 @@
                 </button>
                 </div>
                 <nav :class="{'block': open, 'hidden': !open}" class="flex-grow md:block border-primary px-4 pb-4 md:pb-0 md:overflow-y-auto">
-                <a class="flex items-center gap-4 text-mobile-p text-dark font-Custom px-4 py-2 mt-2 rounded-desktop-form hover:text-gray-900 focus:text-gray-900 hover:bg-asset-1-light focus:bg-asset-1-light lg:text-destop-p" href="/admin/dashboard">
+                <a class="flex items-center gap-4 text-mobile-p text-dark font-Custom px-4 py-2 mt-2 rounded-desktop-form hover:text-gray-900 focus:text-gray-900 hover:bg-asset-1-light focus:bg-asset-1-light lg:text-destop-p" href="dashboard">
                     <svg class="full-current" width="20" height="21" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M14.1666 12.1668V17.1668M11.6666 14.6668H16.6666M4.99992 8.8335H6.66659C7.58706 8.8335 8.33325 8.0873 8.33325 7.16683V5.50016C8.33325 4.57969 7.58706 3.8335 6.66659 3.8335H4.99992C4.07944 3.8335 3.33325 4.57969 3.33325 5.50016V7.16683C3.33325 8.0873 4.07944 8.8335 4.99992 8.8335ZM13.3333 8.8335H14.9999C15.9204 8.8335 16.6666 8.0873 16.6666 7.16683V5.50016C16.6666 4.57969 15.9204 3.8335 14.9999 3.8335H13.3333C12.4128 3.8335 11.6666 4.57969 11.6666 5.50016V7.16683C11.6666 8.0873 12.4128 8.8335 13.3333 8.8335ZM4.99992 17.1668H6.66659C7.58706 17.1668 8.33325 16.4206 8.33325 15.5002V13.8335C8.33325 12.913 7.58706 12.1668 6.66659 12.1668H4.99992C4.07944 12.1668 3.33325 12.913 3.33325 13.8335V15.5002C3.33325 16.4206 4.07944 17.1668 4.99992 17.1668Z" stroke="#343EE5" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                     </svg>
                     <p>Dashboard</p>
                 </a>
-
-
-
+    
                 <a class="flex items-center gap-4 text-mobile-p text-dark font-Custom px-4 py-2 mt-2 rounded-desktop-form hover:text-gray-900 focus:text-gray-900 hover:bg-asset-1-light focus:bg-asset-1-light lg:text-destop-p" href="/admin/product">
-                    <svg width="20" height="21" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <svg class="full-current" width="20" height="21" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M14.1666 12.1668V17.1668M11.6666 14.6668H16.6666M4.99992 8.8335H6.66659C7.58706 8.8335 8.33325 8.0873 8.33325 7.16683V5.50016C8.33325 4.57969 7.58706 3.8335 6.66659 3.8335H4.99992C4.07944 3.8335 3.33325 4.57969 3.33325 5.50016V7.16683C3.33325 8.0873 4.07944 8.8335 4.99992 8.8335ZM13.3333 8.8335H14.9999C15.9204 8.8335 16.6666 8.0873 16.6666 7.16683V5.50016C16.6666 4.57969 15.9204 3.8335 14.9999 3.8335H13.3333C12.4128 3.8335 11.6666 4.57969 11.6666 5.50016V7.16683C11.6666 8.0873 12.4128 8.8335 13.3333 8.8335ZM4.99992 17.1668H6.66659C7.58706 17.1668 8.33325 16.4206 8.33325 15.5002V13.8335C8.33325 12.913 7.58706 12.1668 6.66659 12.1668H4.99992C4.07944 12.1668 3.33325 12.913 3.33325 13.8335V15.5002C3.33325 16.4206 4.07944 17.1668 4.99992 17.1668Z" stroke="#343EE5" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                     </svg>
-                    <p class="text-primary">Add Products</p>
+                    <p>Add Products</p>
                 </a>
-
-                <a class="flex items-center gap-4 text-mobile-p text-dark font-Custom px-4 py-2 mt-2 rounded-desktop-form hover:text-gray-900 focus:text-gray-900 hover:bg-asset-1-light focus:bg-asset-1-light lg:text-destop-p" href="productRequest">
+    
+                <a class="flex items-center gap-4 text-mobile-p text-primary font-Custom px-4 py-2 mt-2 rounded-desktop-form hover:text-gray-900 focus:text-gray-900 hover:bg-asset-1-light focus:bg-asset-1-light lg:text-destop-p" href="/admin/productRequest">
                     <svg class="full-current" width="20" height="21" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M14.1666 12.1668V17.1668M11.6666 14.6668H16.6666M4.99992 8.8335H6.66659C7.58706 8.8335 8.33325 8.0873 8.33325 7.16683V5.50016C8.33325 4.57969 7.58706 3.8335 6.66659 3.8335H4.99992C4.07944 3.8335 3.33325 4.57969 3.33325 5.50016V7.16683C3.33325 8.0873 4.07944 8.8335 4.99992 8.8335ZM13.3333 8.8335H14.9999C15.9204 8.8335 16.6666 8.0873 16.6666 7.16683V5.50016C16.6666 4.57969 15.9204 3.8335 14.9999 3.8335H13.3333C12.4128 3.8335 11.6666 4.57969 11.6666 5.50016V7.16683C11.6666 8.0873 12.4128 8.8335 13.3333 8.8335ZM4.99992 17.1668H6.66659C7.58706 17.1668 8.33325 16.4206 8.33325 15.5002V13.8335C8.33325 12.913 7.58706 12.1668 6.66659 12.1668H4.99992C4.07944 12.1668 3.33325 12.913 3.33325 13.8335V15.5002C3.33325 16.4206 4.07944 17.1668 4.99992 17.1668Z" stroke="#343EE5" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                     </svg>
                     <p>Products Request</p>
                 </a>
+    
 
                 <hr class="border-t-2 rounded-lg border-border-color my-4">
                 <!-- logout -->
@@ -65,74 +65,50 @@
                 </form>
                 </nav>
             </div>
-
+    
         </aside>
-        
 
-        <section class="lg:mx-3 col-span-full lg:col-span-10 px-4 lg:px-8 overflow-y-auto scroll">
-            <!-- title -->
-             <div>
-                <h1 class="font-Custom text-mobile-h1 lg:text-destop-h1">Create Auction</h1>
-                <span class="font-Custom text-dark-light text-mobile-h4 lg:text-destop-h4">Add Product to create a Auction</span>
-             </div>
-
-             <form method="post" action="/admin/product" enctype="multipart/form-data" class="mt-3 col-span-12 flex flex-col gap-4 lg:col-span-8 px-4 py-4 lg:px-8 max-h-min bg-white rounded-desktop-form">
-                <div class="grid grid-cols-12 gap-6">
-                    <div class="flex gap-2 flex-col col-span-12 lg:col-span-12">
-                        <label class="font-Custom font-normal text-mobile-p text-dark lg:text-destop-p" for="auctionName">Auction Name</label>
-                        <input type="text" name="auctionName" class="font-Custom py-[10px] px-[8px] border-2 border-dark-light rounded-desktop-form  hover:border-dark focus:border-dark placeholder:font-Custom" placeholder="Enter Auction Name" required>
-                    </div>
-                </div>
-
-                <div class="grid grid-cols-12 gap-6">
-                    <div class="flex gap-2 flex-col col-span-12 lg:col-span-6">
-                        <label class="font-Custom font-normal text-mobile-p text-dark lg:text-destop-p" for="auctionName">Start Time</label>
-                        <input type="datetime-local" name="startTime" class="font-Custom py-[10px] px-[8px] border-2 border-dark-light rounded-desktop-form  hover:border-dark focus:border-dark placeholder:font-Custom" placeholder="Enter Auction Name" required>
-                    </div>
-
-                    <div class="flex gap-2 flex-col col-span-12 lg:col-span-6">
-                        <label class="font-Custom font-normal text-mobile-p text-dark lg:text-destop-p" for="auctionName">End Time</label>
-                        <input type="datetime-local" name="endTime" class="font-Custom py-[10px] px-[8px] border-2 border-dark-light rounded-desktop-form  hover:border-dark focus:border-dark placeholder:font-Custom" placeholder="Enter Auction Name" required>
-                    </div>
-                </div>
-
-                <div class="grid grid-cols-12 gap-6">
-                    <div class="flex gap-2 flex-col col-span-12 lg:col-span-6">
-                        <label class="font-Custom font-normal text-mobile-p text-dark lg:text-destop-p" for="startingBid">Starting Bid</label>
-                        <input type="number" inputmode="numeric" name="startingBid" class="font-Custom py-[10px] px-[8px] border-2 border-dark-light rounded-desktop-form  hover:border-dark focus:border-dark placeholder:font-Custom" placeholder="₹1000" required>
-                    </div>
-
-                    <div class="flex flex-col gap-2 col-span-12 lg:col-span-6">
-                        <label class="font-Custom font-normal text-mobile-p text-dark lg:text-destop-p" for="bidIncrement">Bid Increment:</label>
-                        <input type="number" name="bidIncrement" value="1000" class="font-Custom py-[10px] px-[8px] border-2 border-dark-light rounded-desktop-form  hover:border-dark focus:border-dark placeholder:font-Custom" placeholder="₹1000">
-                    </div>
-                </div>
-
-
-                <label class="font-Custom font-normal text-mobile-p text-dark lg:text-destop-p" for="description">Description:</label>
-                <textarea type="text" name="description" class="h-40 text-start font-Custom py-[10px] px-[8px] border-2 border-dark-light rounded-desktop-form  hover:border-dark focus:border-dark placeholder:font-Custom" required placeholder="Enter Auction Description"></textarea>
-                
-                <div class="grid grid-cols-12 gap-6">
-                    <div class="flex gap-2 flex-col col-span-12 lg:col-span-7">
-                        <label class="font-Custom font-normal text-mobile-p text-dark lg:text-destop-p" for="category">Category</label>
-                        <select class="form-select max-h-max font-Custom py-[10px] px-[8px] border-2 border-dark-light rounded-desktop-form  hover:border-dark focus:border-dark placeholder:font-Custom" id="category" name="category">
-                            <option value="">Select Category</option>
-                            <!-- Categories would be dynamically generated from the database -->
-                            <option value="category_id_1">Category 1</option>
-                            <option value="category_id_2">Category 2</option>
-                        </select>
-                    </div>
-
-                    <div class="flex flex-col gap-2 col-span-12 lg:col-span-5">
-                        <label class="font-Custom font-normal text-mobile-p text-dark lg:text-destop-p" for="productImage">Product Image</label>
-                        <input required type="file" name="image" multiple class="font-Custom py-[10px] px-[8px] border-2 border-dark-light rounded-desktop-form  hover:border-dark focus:border-dark placeholder:font-Custom" placeholder="₹1000">
-                    </div>
-                </div>
-
-                <button type="submit" class="font-Custom py-[10px] bg-primary rounded-desktop-form text-white text-mobile-p lg:text-destop-p">Create a Auction</button>
-
-             </form>
-        </section>
+        <div class="col-span-full mt-5 lg:ms-3 lg:col-span-10 px-4 lg:px-8 overflow-y-auto font-Custom">
+            <h1 class="text-mobile-h1 lg:text-destop-h1">Product Request</h1>
+    
+            <h2 class="text-2xl mb-4">Pending Products</h2>
+    
+            <% if (pendingProducts.length === 0) { %>
+                <p class="text-gray-700">No pending products at the moment.</p>
+            <% } else { %>
+                <ul>
+                    <% pendingProducts.forEach(product => { %>
+                        <li class="bg-white p-4 mb-4 rounded-desktop-form shadow-md">
+                            <div class="flex justify-between">
+                                <div class="flex flex-col gap-2">
+                                    <h3 class="text-mobile-h3 text-dark font-semibold lg:text-destop-h3">Product Name: 
+                                    <span class="capitalize font-normal">
+                                        <%= product.title %>
+                                    </span>
+                                </h3>
+                                    <p class="text-mobile-p lg:text-destop-p text-dark-light">Product Description: <%= product.description %></p>
+                                </div>
+                                <div class="flex flex-col gap-4">
+                                    <h1 class="text-mobile-h4 lg:text-destop-h4">Price: ₹<%= product.starting_bid %></h1>
+                                    <div class="flex gap-4">
+                                        <form action="/admin/productRequest/accept/<%= product._id %>" method='post'>
+                                            <button type="submit" class="bg-green-500 hover:bg-green-700 w-28 text-white py-2 px-4 rounded-desktop-form">
+                                                Approve
+                                            </button>
+                                        </form>
+                                        <form action="/admin/productRequest/reject/<%= product._id %>" method='post'>
+                                            <button type="submit" class="bg-red-500 hover:bg-red-700 w-28 text-white py-2 px-4 rounded-desktop-form">
+                                                Reject
+                                            </button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    <% }); %>
+                </ul>
+            <% } %>
+        </div>
     </main>
 
 </body>

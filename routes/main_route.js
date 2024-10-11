@@ -9,6 +9,8 @@ const { upload } = require('../src/javascript/image_cloud');
 
 const AuctionModel =require('../schema/auction_schema');
 const CategoryModel=require('../schema/catagory_schema');
+const send_wailtingList_email = require('../src/javascript/waitlist_Email.js');
+
 
 const route=express.Router();
 
@@ -58,7 +60,7 @@ route.post('/join-waiting-list/:auctionId', isLoggedIn, async (req, res) => {
     try {
         // Find the auction by ID
         const auction = await Auction.findById(auctionId);
-        
+        const user=await UserModel.findOne({email:req.session.passport.user})
         if (!auction) {
             return res.status(404).send('Auction not found');
         }
@@ -71,6 +73,8 @@ route.post('/join-waiting-list/:auctionId', isLoggedIn, async (req, res) => {
         // Add the user to the waiting list
         auction.waiting_list.push(userId);
         await auction.save();
+
+        send_wailtingList_email(user,auction);
 
         res.status(200).send('Successfully joined the waiting list.');
     } catch (error) {
@@ -133,18 +137,21 @@ route.post('/profile',async(request,response)=>{
 
 
 // add Auction routes
-route.get('/addProduct',(request,response)=>{
-    response.render('user/add_product',{})
+route.get('/addProduct',async(request,response)=>{
+    const user=await UserModel.findOne({email:request.session.passport.user})
+    response.render('user/add_product',{user})
 })
 
-route.post('/product',upload.array('image',5),async(request,response)=>{
+route.post('/addProduct',upload.array('image',5),async(request,response)=>{
     try {
         const {body} = request;
         
         console.log(body);
 
         // Get the seller ID from the session
-        const seller_id = request.session.userId;  
+        const seller_id = request.session.passport._id;  
+        console.log(seller_id);
+        
         if (!seller_id) {
             console.log("seller ID");
             return response.status(401).send('You must be logged in to create an auction');
@@ -182,10 +189,12 @@ route.post('/product',upload.array('image',5),async(request,response)=>{
             start_time:startTimeParsed,
             end_time:endTimeParsed,
             seller_id:seller_id,
+            status:'pending',
             category:category._id
         })
         console.log("Auction end");
         await newAuction.save();
+        request.io.emit('newProduct', { productName: newAuction.title, productId: newAuction._id });
         response.redirect('home');
     } 
     catch (error) {

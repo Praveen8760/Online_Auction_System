@@ -52,7 +52,7 @@
                 <span class="font-Custom text-dark-light text-mobile-h4 lg:text-destop-h4">Add Product to create a Auction</span>
              </div>
 
-             <form method="post" action="/admin/product" enctype="multipart/form-data" class="mt-3 col-span-12 flex flex-col gap-4 lg:col-span-8 px-4 py-4 lg:px-8 max-h-min bg-white rounded-desktop-form">
+             <form method="post" action="/addProduct" enctype="multipart/form-data" class="mt-3 col-span-12 flex flex-col gap-4 lg:col-span-8 px-4 py-4 lg:px-8 max-h-min bg-white rounded-desktop-form">
                 <div class="grid grid-cols-12 gap-6">
                     <div class="flex gap-2 flex-col col-span-12 lg:col-span-12">
                         <label class="font-Custom font-normal text-mobile-p text-dark lg:text-destop-p" for="auctionName">Auction Name</label>
@@ -110,6 +110,19 @@
              </form>
         </section>
     </main>
+
+
+
+
+
+
+
+    <script>
+        const socket = io();
+        socket.on('newProduct', (data) => {
+            alert(`New product submitted: ${data.productName}. Waiting for admin approval.`);
+        });
+    </script>
 
 </body>
 </html>

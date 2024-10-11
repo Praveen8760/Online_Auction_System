@@ -28,18 +28,11 @@
                 </button>
                 </div>
                 <nav :class="{'block': open, 'hidden': !open}" class="flex-grow md:block border-primary px-4 pb-4 md:pb-0 md:overflow-y-auto">
-                <a class="flex items-center gap-4 text-mobile-p text-dark font-Custom px-4 py-2 mt-2 rounded-desktop-form hover:text-gray-900 focus:text-gray-900 hover:bg-asset-1-light focus:bg-asset-1-light lg:text-destop-p" href="#">
+                <a class="flex items-center gap-4 text-mobile-p text-primary font-Custom px-4 py-2 mt-2 rounded-desktop-form hover:text-gray-900 focus:text-gray-900 hover:bg-asset-1-light focus:bg-asset-1-light lg:text-destop-p" href="dashboard">
                     <svg class="full-current" width="20" height="21" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M14.1666 12.1668V17.1668M11.6666 14.6668H16.6666M4.99992 8.8335H6.66659C7.58706 8.8335 8.33325 8.0873 8.33325 7.16683V5.50016C8.33325 4.57969 7.58706 3.8335 6.66659 3.8335H4.99992C4.07944 3.8335 3.33325 4.57969 3.33325 5.50016V7.16683C3.33325 8.0873 4.07944 8.8335 4.99992 8.8335ZM13.3333 8.8335H14.9999C15.9204 8.8335 16.6666 8.0873 16.6666 7.16683V5.50016C16.6666 4.57969 15.9204 3.8335 14.9999 3.8335H13.3333C12.4128 3.8335 11.6666 4.57969 11.6666 5.50016V7.16683C11.6666 8.0873 12.4128 8.8335 13.3333 8.8335ZM4.99992 17.1668H6.66659C7.58706 17.1668 8.33325 16.4206 8.33325 15.5002V13.8335C8.33325 12.913 7.58706 12.1668 6.66659 12.1668H4.99992C4.07944 12.1668 3.33325 12.913 3.33325 13.8335V15.5002C3.33325 16.4206 4.07944 17.1668 4.99992 17.1668Z" stroke="#343EE5" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                     </svg>
                     <p>Dashboard</p>
-                </a>
-
-                <a class="flex items-center gap-4 text-mobile-p text-dark font-Custom px-4 py-2 mt-2 rounded-desktop-form hover:text-gray-900 focus:text-gray-900 hover:bg-asset-1-light focus:bg-asset-1-light lg:text-destop-p" href="#">
-                    <svg class="full-current" width="20" height="21" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M14.1666 12.1668V17.1668M11.6666 14.6668H16.6666M4.99992 8.8335H6.66659C7.58706 8.8335 8.33325 8.0873 8.33325 7.16683V5.50016C8.33325 4.57969 7.58706 3.8335 6.66659 3.8335H4.99992C4.07944 3.8335 3.33325 4.57969 3.33325 5.50016V7.16683C3.33325 8.0873 4.07944 8.8335 4.99992 8.8335ZM13.3333 8.8335H14.9999C15.9204 8.8335 16.6666 8.0873 16.6666 7.16683V5.50016C16.6666 4.57969 15.9204 3.8335 14.9999 3.8335H13.3333C12.4128 3.8335 11.6666 4.57969 11.6666 5.50016V7.16683C11.6666 8.0873 12.4128 8.8335 13.3333 8.8335ZM4.99992 17.1668H6.66659C7.58706 17.1668 8.33325 16.4206 8.33325 15.5002V13.8335C8.33325 12.913 7.58706 12.1668 6.66659 12.1668H4.99992C4.07944 12.1668 3.33325 12.913 3.33325 13.8335V15.5002C3.33325 16.4206 4.07944 17.1668 4.99992 17.1668Z" stroke="#343EE5" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>
-                    <p>Products</p>
                 </a>
 
                 <a class="flex items-center gap-4 text-mobile-p text-dark font-Custom px-4 py-2 mt-2 rounded-desktop-form hover:text-gray-900 focus:text-gray-900 hover:bg-asset-1-light focus:bg-asset-1-light lg:text-destop-p" href="/admin/product">
@@ -49,19 +42,13 @@
                     <p>Add Products</p>
                 </a>
 
-                <a class="flex items-center gap-4 text-mobile-p text-dark font-Custom px-4 py-2 mt-2 rounded-desktop-form hover:text-gray-900 focus:text-gray-900 hover:bg-asset-1-light focus:bg-asset-1-light lg:text-destop-p" href="#">
+                <a class="flex items-center gap-4 text-mobile-p text-dark font-Custom px-4 py-2 mt-2 rounded-desktop-form hover:text-gray-900 focus:text-gray-900 hover:bg-asset-1-light focus:bg-asset-1-light lg:text-destop-p" href="/admin/productRequest">
                     <svg class="full-current" width="20" height="21" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M14.1666 12.1668V17.1668M11.6666 14.6668H16.6666M4.99992 8.8335H6.66659C7.58706 8.8335 8.33325 8.0873 8.33325 7.16683V5.50016C8.33325 4.57969 7.58706 3.8335 6.66659 3.8335H4.99992C4.07944 3.8335 3.33325 4.57969 3.33325 5.50016V7.16683C3.33325 8.0873 4.07944 8.8335 4.99992 8.8335ZM13.3333 8.8335H14.9999C15.9204 8.8335 16.6666 8.0873 16.6666 7.16683V5.50016C16.6666 4.57969 15.9204 3.8335 14.9999 3.8335H13.3333C12.4128 3.8335 11.6666 4.57969 11.6666 5.50016V7.16683C11.6666 8.0873 12.4128 8.8335 13.3333 8.8335ZM4.99992 17.1668H6.66659C7.58706 17.1668 8.33325 16.4206 8.33325 15.5002V13.8335C8.33325 12.913 7.58706 12.1668 6.66659 12.1668H4.99992C4.07944 12.1668 3.33325 12.913 3.33325 13.8335V15.5002C3.33325 16.4206 4.07944 17.1668 4.99992 17.1668Z" stroke="#343EE5" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                     </svg>
                     <p>Products Request</p>
                 </a>
 
-                <a class="flex items-center gap-4 text-mobile-p text-dark font-Custom px-4 py-2 mt-2 rounded-desktop-form hover:text-gray-900 focus:text-gray-900 hover:bg-asset-1-light focus:bg-asset-1-light lg:text-destop-p" href="#">
-                    <svg class="full-current" width="20" height="21" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M14.1666 12.1668V17.1668M11.6666 14.6668H16.6666M4.99992 8.8335H6.66659C7.58706 8.8335 8.33325 8.0873 8.33325 7.16683V5.50016C8.33325 4.57969 7.58706 3.8335 6.66659 3.8335H4.99992C4.07944 3.8335 3.33325 4.57969 3.33325 5.50016V7.16683C3.33325 8.0873 4.07944 8.8335 4.99992 8.8335ZM13.3333 8.8335H14.9999C15.9204 8.8335 16.6666 8.0873 16.6666 7.16683V5.50016C16.6666 4.57969 15.9204 3.8335 14.9999 3.8335H13.3333C12.4128 3.8335 11.6666 4.57969 11.6666 5.50016V7.16683C11.6666 8.0873 12.4128 8.8335 13.3333 8.8335ZM4.99992 17.1668H6.66659C7.58706 17.1668 8.33325 16.4206 8.33325 15.5002V13.8335C8.33325 12.913 7.58706 12.1668 6.66659 12.1668H4.99992C4.07944 12.1668 3.33325 12.913 3.33325 13.8335V15.5002C3.33325 16.4206 4.07944 17.1668 4.99992 17.1668Z" stroke="#343EE5" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>
-                    <p>Reports</p>
-                </a>
                 <hr class="border-t-2 rounded-lg border-border-color my-4">
                 <!-- logout -->
                 <form method="post" action="/admin/logout" class="w-full h-auto flex justify-center">
@@ -79,7 +66,7 @@
         </aside>
         
 
-        <section class="col-span-full lg:ms-3 lg:col-span-10 px-4 lg:px-8 overflow-y-auto  ">
+        <section class="col-span-full lg:ms-3 lg:col-span-10 px-4 lg:px-8 overflow-y-auto">
             <!-- heading -->
             <div class="">
                 <h1 class="text-dark text-mobile-h1 font-Custom lg:text-destop-h1">Dashboard</h1>
@@ -124,7 +111,7 @@
                     <div class="flex flex-col">
                         <h1 class="text-dark-light text-mobile-p font-Custom g:text-destop-h3">Pending Request</h1>
                         <h3 class="text-dark text-mobile-h3 font-Custom lg:text-destop-h2">
-                            <%- dashboard_data.pending_request %>
+                            <%- dashboard_data.pendingRequest %>
                         </h3>
                     </div>
                     <img src="/image/user.svg" alt="user" class="self-start w-[40px] h-[40px] lg:w-[60px] lg:h-[60px]">

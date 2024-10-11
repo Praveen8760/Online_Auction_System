@@ -7,10 +7,10 @@ const express=require('express')
 require('dotenv').config();
 
 
-async function send_registered_email(body,template){
-    // const templatePath = path.join(process.cwd(), 'views', 'email', 'registerEmail.ejs');
-    const userName=body.fullname;
-    const htmlTemplate = await ejs.renderFile(template, { userName });
+async function send_registered_email(user,auction){
+    const templatePath = path.join(process.cwd(), 'views', 'email', 'waitingList.ejs');
+    const userName=user.fullname;
+    const htmlTemplate = await ejs.renderFile(templatePath, { userName ,auction });
 
     let transporter=nodemailer.createTransport({
         service:'gmail',
@@ -21,8 +21,8 @@ async function send_registered_email(body,template){
     })
     let mailOption={
         from:'praveen890340@gmail.com',
-        to:body.email,
-        subject:"Thanks For Registering",
+        to:user.email,
+        subject:"Auction to Your Waiting List",
         html:htmlTemplate
     }
     // sending the mail

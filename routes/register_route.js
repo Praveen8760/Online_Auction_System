@@ -9,7 +9,8 @@ const send_registered_email = require('../src/javascript/email_sender');
 const hash_password = require('../src/javascript/password_hashing');
 const passport = require('passport');
 
-
+const fs=require('fs')
+const path=require('path')
 
 
 
@@ -33,7 +34,8 @@ route.post('/register',async(request,response)=>{
         else{
             const newUser=new UserModel({email:body.email,fullname:body.fullname,password:body.password});
             await newUser.save();
-            send_registered_email(body.email);
+            const templatePath = path.join(process.cwd(), 'views', 'email', 'registerEmail.ejs');
+            send_registered_email(body,templatePath);
             return response.redirect('/login')
         }
     }

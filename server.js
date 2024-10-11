@@ -42,7 +42,7 @@ const io=socketIo(server)
 
 const DB=mongoose.connect("mongodb://localhost:27017/auction_App")
 .then(()=>{
-    console.log("DB Conneted");
+    console.log("Database Conneted");
 })
 .catch((err)=>{
     console.log("Database Error");
@@ -73,6 +73,10 @@ const DB=mongoose.connect("mongodb://localhost:27017/auction_App")
 // })
 
 
+app.use((req, res, next) => {
+    req.io = io;  // Make `io` available in all routes
+    next();
+  });
 
     
 
