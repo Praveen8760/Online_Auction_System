@@ -23,9 +23,18 @@
             default: Date.now 
         },
         payment_methods: [{
-            card_number: mongoose.Schema.Types.String,
-            card_expiry: mongoose.Schema.Types.String,
-            card_cvc: mongoose.Schema.Types.String,
+            card_number: {
+                type: mongoose.Schema.Types.String,
+                default: "0"
+            },
+            card_expiry: {
+                type: mongoose.Schema.Types.String,
+                default: "0"
+            },
+            card_cvc: {
+                type: mongoose.Schema.Types.String,
+                default: "0"
+            }
         }],
         watchlist: [{ 
             type: mongoose.Schema.Types.ObjectId, 

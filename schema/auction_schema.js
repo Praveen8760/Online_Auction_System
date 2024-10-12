@@ -18,6 +18,8 @@ const auctionSchema = new Schema({
     winner_id: { type: Schema.Types.ObjectId, ref: 'User' },
     created_at: { type: Date, default: Date.now },
     updated_at: { type: Date, default: Date.now },
+    payment_status:{type:String, enum:['pending', 'paid', 'failed'],default:'pending'},
+    payment_due: { type: Date },
     waiting_list:[{type:mongoose.Types.ObjectId,ref:'User'}]
 });
 

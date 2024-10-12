@@ -11,6 +11,10 @@ const AuctionModel =require('../schema/auction_schema');
 const CategoryModel=require('../schema/catagory_schema');
 const send_wailtingList_email = require('../src/javascript/waitlist_Email.js');
 const winnerMail=require('../src/javascript/winnerEmail.js');
+const paymentEmail=require('../src/javascript/paymentEmail.js');
+const {addHours}=require('date-fns')
+const razorpay=require('razorpay')
+const crypto=require('crypto')
 
 const route=express.Router();
 
@@ -23,6 +27,11 @@ function isLoggedIn(request,response,next){
     }
 }
 
+
+const Razorpay=new razorpay({
+    key_id:'rzp_test_lUSTLw9h4ehK3T',
+    key_secret:'OS3zsOd39Kph1nehGCaeidMG'
+})
 
 
 
@@ -88,6 +97,7 @@ route.post('/join-waiting-list/:auctionId', isLoggedIn, async (req, res) => {
 
 route.get('/profile',async(request,response)=>{
     const user=await UserModel.findOne({email:request.session.passport.user})
+    
     return response.render('user/profile',{user})
 })
 
@@ -204,84 +214,23 @@ route.post('/addProduct',upload.array('image',5),async(request,response)=>{
 });
 
 
-// Bids History
-// Route to fetch user's bids
-route.get('/myBids', async (request, response) => {
+
+
+
+route.get('/orders', async (req, res) => {
     try {
-        const userId = request.session.passport._id;  // Get the logged-in user's ID
-
-        console.log('User ID:', userId);
-        if (!userId) {
-            return response.status(403).send('User not logged in');
-        }
-        const user=await UserModel.findOne({email:request.session.passport.user})
-
+        const userId = req.session.passport._id;
         
-        // Fetch all bids for the user and populate auction details
-        const bids = await Bid.find({ user_id: userId })
-            .populate({
-                path: 'auction_id',
-                model: 'Auction',
-                select: 'title description images starting_bid current_bid bid_increment start_time end_time status seller_id category',
-                populate: { path: 'winner_id', model: 'User', select: 'fullname' }  
-            })
-            .exec();
-
-        console.log('Fetched Bids:', bids);
         
-        // Check if any bids were found
-        if (bids.length === 0) {
-            console.log('No bids found for user:', userId);
-            return response.render('user/bids', { products: [], message: 'You haven\'t placed any bids yet.' });
-        }
+        const user=await UserModel.findOne({email:req.session.passport.user})
+        // Find auctions where the user is the winner and payment is pending
+        const wonAuctions = await Auction.find({ winner_id: userId, status: 'completed' });
 
-        // Group the bids by auction (product)
-        const groupedBids = bids.reduce((acc, bid) => {
-            const auctionId = bid.auction_id._id.toString();
 
-            // Initialize auction entry if it doesn't exist
-            if (!acc[auctionId]) {
-                acc[auctionId] = {
-                    auction: {
-                        _id: bid.auction_id._id,
-                        title: bid.auction_id.title,
-                        description: bid.auction_id.description,
-                        images: bid.auction_id.images,
-                        starting_bid: bid.auction_id.starting_bid,
-                        current_bid: bid.auction_id.current_bid,
-                        bid_increment: bid.auction_id.bid_increment,
-                        start_time: bid.auction_id.start_time,
-                        end_time: bid.auction_id.end_time,
-                        status: bid.auction_id.status,
-                        seller_id: bid.auction_id.seller_id,
-                        category: bid.auction_id.category,
-                    },
-                    bids: []
-                };
-            }
-            
-            // Add the current bid to the auction's bids array
-            acc[auctionId].bids.push({
-                _id: bid._id,
-                amount: bid.amount.toString(),
-                timestamp: bid.timestamp,
-                status: bid.status
-            });
-            
-            return acc;
-        }, {});
-
-        console.log('Grouped Bids:', groupedBids);
-        
-        // Convert the grouped bids object to an array for rendering
-        const products = Object.values(groupedBids);
-
-        // Render the bids view with grouped bids data
-        response.render('user/bids', { products , user});
-        
-    } catch (err) {
-        console.error('Error fetching bids:', err);
-        response.status(500).send('Server error');
+        res.render('user/order', { auctions: wonAuctions , user });
+    } catch (error) {
+        console.error('Error fetching orders:', error);
+        res.status(500).send('Server Error');
     }
 });
 
@@ -307,13 +256,14 @@ async function checkAuctions() {
             if (highestBid) {
                 // Mark the auction as completed
                 auction.status = 'completed';
-                await auction.save();
-
+                
                 // Fetch the winning user's email
                 const winnerUser = await UserModel.findById(highestBid.user_id);
                 
+                auction.winner_id=winnerUser._id;
+                auction.payment_due = addHours(new Date(), 48);
+                await auction.save();
                 if (winnerUser) {
-                    
                     // Send email to the winner
                     winnerMail(winnerUser,auction);
                 } else {
@@ -327,6 +277,103 @@ async function checkAuctions() {
         console.error('Error checking auctions:', error);
     }
 }
+
+
+// payment
+route.get('/pay/:auctionId', async (req, res) => {
+    try {
+        const auctionId = req.params.auctionId;
+        console.log(auctionId);
+        
+        const auction = await Auction.findById(auctionId);
+
+        if (!auction) {
+            return res.status(404).send('Auction not found');
+        }
+
+        // Create Razorpay order if payment is pending
+        if (auction.payment_status === 'pending') {
+            const options = {
+                amount: auction.current_bid * 100, // Amount in paise
+                currency: 'INR',
+                receipt: `receipt_${auctionId}`,
+            };
+
+            const order = await Razorpay.orders.create(options);
+            res.render('user/payment', { auction, order });
+        } else {
+            res.send('Payment already completed.');
+        }
+    } catch (error) {
+        console.error('Error creating payment link:', error);
+        res.status(500).send('Server Error');
+    }
+});
+route.post('/payment/success', async (req, res) => {
+    const { order_id, payment_id, signature } = req.body;
+    const auctionId = req.body.auctionId;
+
+    // Verify signature
+    const expectedSignature = crypto.createHmac('sha256', 'OS3zsOd39Kph1nehGCaeidMG')
+        .update(order_id + '|' + payment_id)
+        .digest('hex');
+
+    if (signature === expectedSignature) {
+        const auction = await Auction.findById(auctionId);
+        const user=await UserModel.findById(auction.winner_id);
+        if (auction) {
+            auction.payment_status = 'paid';
+            await auction.save();
+            paymentEmail(user,auction)
+            res.redirect('/orders'); // Redirect to orders page on success
+        }
+    } else {
+        res.status(400).send('Payment verification failed');
+    }
+});
+
+route.post('/payment/failure', async (req, res) => {
+    const auctionId = req.body.auctionId;
+    const auction = await Auction.findById(auctionId);
+
+    if (auction) {
+        auction.payment_status = 'failed';
+        await auction.save();
+        res.redirect('/orders');
+    }
+});
+
+
+async function checkPaymentDue() {
+    const now = new Date();
+    try {
+        const overdueAuctions = await Auction.find({
+            payment_status: 'pending',
+            payment_due: { $lte: now }
+        });
+
+        for (const auction of overdueAuctions) {
+            auction.status = 'active'; // Reset auction status
+            auction.current_bid = 0; // Reset to starting bid
+            auction.winner_id = null; // Remove the winner
+            auction.payment_status = 'pending'; // Reset payment status
+            auction.payment_due = null; // Remove payment due date
+            await auction.save();
+            console.log(`Auction ${auction._id} reset due to overdue payment.`);
+        }
+    } catch (error) {
+        console.error('Error checking payment due:', error);
+    }
+}
+
+
+
+
+
+
+
+
+
 
 
 // Add this route in your Express app
@@ -353,6 +400,7 @@ route.get('/logout', (request, response) => {
 
 
 setInterval(checkAuctions,60*1000);
+setInterval(checkPaymentDue, 60 * 60 * 1000); // Check every hour
 
 
 module.exports = route
