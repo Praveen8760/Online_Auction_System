@@ -8,7 +8,7 @@ require('dotenv').config();
 
 
 async function send_registered_email(user,auction){
-    const templatePath = path.join(process.cwd(), 'views', 'email', 'waitingList.ejs');
+    const templatePath = path.join(process.cwd(), 'views', 'email', 'winnerEmail.ejs');
     const userName=user.fullname;
     const htmlTemplate = await ejs.renderFile(templatePath, { userName ,auction });
 

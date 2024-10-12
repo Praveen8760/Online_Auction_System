@@ -18,7 +18,7 @@ const bodypareser=require('body-parser');
 const session =require('express-session');
 const cookieParser = require('cookie-parser');
 const flash = require('connect-flash');
-
+const razorpay=require('razorpay');
 
 // routes
 const LoginRoute=require('./routes/login_route');
@@ -48,6 +48,13 @@ const DB=mongoose.connect("mongodb://localhost:27017/auction_App")
     console.log("Database Error");
 })
 
+
+
+// payment intergration
+const Razorpay=new razorpay({
+    key_id:'rzp_test_lUSTLw9h4ehK3T',
+    key_secret:'OS3zsOd39Kph1nehGCaeidMG'
+})
 
 
 // const uri="mongodb+srv://praveen8760:praveen890340@auctionsystemdatabase.zyyid.mongodb.net/?retryWrites=true&w=majority&appName=AuctionSystemDatabase"

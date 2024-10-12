@@ -10,7 +10,7 @@ const { upload } = require('../src/javascript/image_cloud');
 const AuctionModel =require('../schema/auction_schema');
 const CategoryModel=require('../schema/catagory_schema');
 const send_wailtingList_email = require('../src/javascript/waitlist_Email.js');
-
+const winnerMail=require('../src/javascript/winnerEmail.js');
 
 const route=express.Router();
 
@@ -293,7 +293,6 @@ async function checkAuctions() {
         console.log('Checking for auctions to close at:', now); // Log current time
         
         const allAuctions = await Auction.find({ status: 'active' ,end_time :{$lte : now}});
-        console.log('All active auctions:', allAuctions);
         
         if (allAuctions.length === 0) {
             console.log('No expired auctions found.');
@@ -311,13 +310,12 @@ async function checkAuctions() {
                 await auction.save();
 
                 // Fetch the winning user's email
-                const winner = await UserModel.findById(highestBid.user_id);
+                const winnerUser = await UserModel.findById(highestBid.user_id);
                 
-                if (winner) {
-                    console.log(`Winner for auction ${auction._id}: ${winner.email}`);
+                if (winnerUser) {
                     
                     // Send email to the winner
-                    sendWinnerEmail(winner.email, auction.title, highestBid.amount);
+                    winnerMail(winnerUser,auction);
                 } else {
                     console.log(`No winner found for auction ${auction._id}`);
                 }
