@@ -8,7 +8,6 @@ require('dotenv').config();
 
 
 async function send_registered_email(body,template){
-    // const templatePath = path.join(process.cwd(), 'views', 'email', 'registerEmail.ejs');
     const userName=body.fullname;
     const htmlTemplate = await ejs.renderFile(template, { userName });
 

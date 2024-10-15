@@ -12,7 +12,6 @@ const MongoStore=require('connect-mongo');
 const User=require('./schema/user_schema')
 
 
-
 const bodypareser=require('body-parser');
 const session =require('express-session');
 const cookieParser = require('cookie-parser');
@@ -48,11 +47,6 @@ const DB=mongoose.connect("mongodb://localhost:27017/auction_App")
 })
 
 
-
-// payment intergration
-
-
-
 // const uri="mongodb+srv://praveen8760:praveen890340@auctionsystemdatabase.zyyid.mongodb.net/?retryWrites=true&w=majority&appName=AuctionSystemDatabase"
 // const DB=mongoose.connect(uri)
 // .then(()=>{
@@ -82,11 +76,6 @@ app.use((req, res, next) => {
   });
 
     
-
-
-
-
-
 // template engine
 app.set('view engine','ejs');
 
@@ -147,7 +136,7 @@ require('./src/javascript/socket')(io);
 
 
 app.get('/',(request,response)=>{
-    return response.render('home')
+    return response.redirect('/home')
 })
 
 
