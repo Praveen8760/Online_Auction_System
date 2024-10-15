@@ -38,36 +38,28 @@ const io=socketIo(server)
 
 // Database connection
 
-const DB=mongoose.connect("mongodb://localhost:27017/auction_App")
-.then(()=>{
-    console.log("Database Conneted");
-})
-.catch((err)=>{
-    console.log("Database Error");
-})
-
-
-// const uri="mongodb+srv://praveen8760:praveen890340@auctionsystemdatabase.zyyid.mongodb.net/?retryWrites=true&w=majority&appName=AuctionSystemDatabase"
-// const DB=mongoose.connect(uri)
+// const DB=mongoose.connect("mongodb://localhost:27017/auction_App")
 // .then(()=>{
-//     console.log("DB");
-//     mongoose.connection.db.admin().ping();
-// })
-// .then(async() => {
-//     console.log("Pinged the database, connection is active");
-//     const newUser=await User.create({
-//         fullname:'testUser',
-//         password:"testUser",
-//         email:"hello2@gmail.com"
-//     });
-//     newUser.save()
-//     console.log("done");
-    
+//     console.log("Database Conneted");
 // })
 // .catch((err)=>{
-//     console.log(err);
-    
+//     console.log("Database Error");
 // })
+
+
+const mongoURI="mongodb+srv://praveen:test@cluster0.zyyid.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
+
+const DB=mongoose.connect(mongoURI)
+.then(()=>{
+    console.log("DB");
+    mongoose.connection.db.admin().ping();
+})
+.then(async() => {
+    console.log("Pinged the database, connection is active");    
+})
+.catch((err)=>{
+    console.log(err);
+})
 
 
 app.use((req, res, next) => {
